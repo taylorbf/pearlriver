@@ -27,11 +27,11 @@ io.on('connection', function(socket){
   });
 });
 
-http.listen(80, function(){
+http.listen(8080, function(){
   console.log('listening on *:8080');
 });
 
-
+var usernames = []
 
 io.sockets.on('connection', function (socket) {
 
@@ -59,9 +59,9 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	socket.on('disconnect', function() {
-		delete usernames[socket.username];
-		io.sockets.emit('updateusers', usernames);
-		socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+		// delete usernames[socket.username];
+		// io.sockets.emit('updateusers', usernames);
+		// socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
 	});
 
 
@@ -75,10 +75,10 @@ io.sockets.on('connection', function (socket) {
 
 	/* User connects */
 	socket.on('adduser', function(username){
-		socket.username = username;
+		/* socket.username = username;
 		usernames[username] = username;
 		socket.emit('updatechat', 'SERVER', 'you have connected');
 		socket.broadcast.emit('updatechat', 'SERVER', username + ' has connected');
-		io.sockets.emit('updateusers', usernames);
+		io.sockets.emit('updateusers', usernames);  */
 	});
 });

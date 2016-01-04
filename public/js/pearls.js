@@ -109,7 +109,6 @@ function playpearl(e) {
 }
 
 function movesilentpearl(e) {
-	console.log("bod");
 		
 		canvasOffset = findPosition(canvas);
 		mousePos = getCursorPosition(e, canvasOffset);
@@ -119,9 +118,7 @@ function movesilentpearl(e) {
 }
 
 function endpearl() {
-	console.log("happened");
 	prefxbus.gain.value = 0.0;
-	console.log(prefxbus.gain.value);
 }
 
 
@@ -197,17 +194,21 @@ function drawHarp() {
 		with (visctx) {
 			//fillStyle = "#06a";
 			//fillRect(incomingNotes[i].x, incomingNotes[i].y, 4,4);
-			if (incomingNotes[i]!=null) {
-				visctx.drawImage(imgObj, incomingNotes[i].x*canvas.width, incomingNotes[i].y*canvas.height);		
+			if (incomingNotes[i]) {
+				if (incomingNotes[i].x && incomingNotes[i].y) {
+					visctx.drawImage(imgObj, incomingNotes[i].x*canvas.width, incomingNotes[i].y*canvas.height);		
+				}
 			}
 		}
 	}
 
 	var scaledPos = new Object();
 
-	if (mousePos.x) {
-		scaledPos.x = mousePos.x / canvas.width;
-		scaledPos.y = mousePos.y / canvas.height;
+	if (mousePos) {
+		if (mousePos.x && mousePos.y) {
+			scaledPos.x = mousePos.x / canvas.width;
+			scaledPos.y = mousePos.y / canvas.height;
+		}
 	}
 	
 	socket.emit('senddata', "mouse", scaledPos);
