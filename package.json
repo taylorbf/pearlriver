@@ -1,0 +1,18 @@
+{
+  "name": "pearlriver",
+  "subdomain": "pearlriver",
+  "domains": [
+    "pearlriver.whitechord.org"
+  ],
+  "scripts": {
+    "start": "pearlserver.js"
+  },
+  "version": "0.0.0-15",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "socket.io": "0.8.x",
+    "express": "2.4.x"
+  }
+}

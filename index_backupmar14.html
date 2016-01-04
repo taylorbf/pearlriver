@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Pearl River (2013)</title>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/pearls.js"></script>
+	</head>
+	<body onkeydown="handleKeys(event)" style="margin:0;padding:0">
+		
+		<div style="text-align:left;color:#777;font-size:12pt;font-family:gill sans;padding:5px;background-color:#eee">pearl river</div>
+
+		<canvas id="harp" style="width:900px;height:500px;border:solid 0px #eee;margin:0px auto 0px;display:block" onmousemove="playpearl(event)" onmouseout="endpearl()"></canvas>
+
+
+		<div style="margin:0 auto;font-size:11pt;width:400px;text-align:center;">
+			<a href="javascript:voiceReg=(132*1)" style="color:#bbb">*tenor*</a>
+			<a href="javascript:voiceReg=(132*4)" style="color:#bbb">soprano</a>
+		</div>
+
+		<div style="overflow:hidden;height:140px;width:200px;margin:0 auto;border:solid 1px #eee;">
+			<input id="chatinput" onkeypress="submitChat(event)" type="text" style="display:block;border:solid 1px #777;width:188px;outline:1px #555;font-size:9pt;padding:5px;background-color:#fafafa"></input>
+			<div id="chatmessages" style="font-size:10pt;height:50px;text-align:left;padding:5px;"></div>
+		</div>
+		
+		<div style="margin:0px auto;width:900px;text-align:center;color:#aaa">
+			y-axis = valume (low to high) • x-axis = pitch (low on left, high on right)<br>
+			play carefully • enter from the bottom, stay near one note, exit on the bottom<br>
+		</div>
+
+
+		
+				
+	</body>
+</html>
