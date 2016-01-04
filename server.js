@@ -2,13 +2,15 @@
 *     Daisy Server      *
 ***********************/
 
-/* "node daisyserver.js" starts local server with this script */
+/* "node server.js" starts local server with this script */
 
 
 /* Definitions */
 var express = require('express');
 var app = express();
 
+// for heroku
+var port = process.env.PORT || 8080;
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -27,11 +29,9 @@ io.on('connection', function(socket){
   });
 });
 
-http.listen(8080, function(){
+http.listen(port, function(){
   console.log('listening on *:8080');
 });
-
-var usernames = []
 
 io.sockets.on('connection', function (socket) {
 
@@ -56,29 +56,5 @@ io.sockets.on('connection', function (socket) {
 	socket.on('sendpearlchat', function (type, data) {
 		/* return update chat */
 		io.sockets.emit('updatepearlchat', type, data);
-	});
-
-	socket.on('disconnect', function() {
-		// delete usernames[socket.username];
-		// io.sockets.emit('updateusers', usernames);
-		// socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
-	});
-
-
-	/* User disconnects
-	socket.on('removeuser', function() {
-		delete usernames[socket.username];
-		io.sockets.emit('updateusers', usernames);
-		socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
-	});
-	*/
-
-	/* User connects */
-	socket.on('adduser', function(username){
-		/* socket.username = username;
-		usernames[username] = username;
-		socket.emit('updatechat', 'SERVER', 'you have connected');
-		socket.broadcast.emit('updatechat', 'SERVER', username + ' has connected');
-		io.sockets.emit('updateusers', usernames);  */
 	});
 });
