@@ -1,1 +1,1 @@
-web: node pearlserver.js
+web: node server.js
